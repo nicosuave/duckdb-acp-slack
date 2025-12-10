@@ -27,7 +27,8 @@ uvx duckdb-claude-slack
 ```
 --bot-token    Slack Bot Token (xoxb-...)  [env: SLACK_BOT_TOKEN]
 --app-token    Slack App Token (xapp-...)  [env: SLACK_APP_TOKEN]
---db           Attach database file (repeatable)
+--db           Database file to attach
+--db-name      Name for attached database (default: filename)
 --init-sql     Path to SQL file to run on startup
 ```
 
@@ -41,10 +42,10 @@ Attach a database:
 duckdb-claude-slack --db /path/to/sales.duckdb
 ```
 
-Multiple databases:
+With custom name:
 
 ```bash
-duckdb-claude-slack --db /data/sales.duckdb --db /data/users.duckdb
+duckdb-claude-slack --db /path/to/data.duckdb --db-name mydata
 ```
 
 Run init SQL on startup (install extensions, attach remote DBs, etc.):
