@@ -1,6 +1,6 @@
 [project]
 name = "duckdb-claude-slack"
-version = "0.2.0"
+version = "0.2.1"
 description = "Slack bot that uses DuckDB ACP extension to call Claude Code"
 requires-python = ">=3.11"
 dependencies = [
