@@ -14,28 +14,43 @@ Let anyone on your team interrogate data in plain English, not just "data people
 uvx duckdb-claude-slack
 ```
 
-Or from source:
-
-```bash
-uvx --from git+https://github.com/nicosuave/duckdb-claude-slack duckdb-claude-slack
-```
-
 ## Setup
 
 1. Create a Slack app using the manifest in `slack_manifest.json`
 2. Enable Socket Mode and generate an app token (`xapp-...`)
 3. Install to workspace and copy the bot token (`xoxb-...`)
-4. Set environment variables:
+4. Set `SLACK_BOT_TOKEN` and `SLACK_APP_TOKEN` (supports dotenv)
+5. Run `duckdb-claude-slack`
 
-```bash
-export SLACK_BOT_TOKEN=xoxb-...
-export SLACK_APP_TOKEN=xapp-...
+## CLI Options
+
+```
+--bot-token    Slack Bot Token (xoxb-...)  [env: SLACK_BOT_TOKEN]
+--app-token    Slack App Token (xapp-...)  [env: SLACK_APP_TOKEN]
+--db           Attach database file (repeatable)
+--init-sql     Path to SQL file to run on startup
 ```
 
-5. Run:
+Auto-loads `.env` and `.env.local` from current directory.
+
+### Examples
+
+Attach a database:
 
 ```bash
-uvx duckdb-claude-slack
+duckdb-claude-slack --db /path/to/sales.duckdb
+```
+
+Multiple databases:
+
+```bash
+duckdb-claude-slack --db /data/sales.duckdb --db /data/users.duckdb
+```
+
+Run init SQL on startup (install extensions, attach remote DBs, etc.):
+
+```bash
+duckdb-claude-slack --init-sql init.sql
 ```
 
 ## Usage
