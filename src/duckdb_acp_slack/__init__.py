@@ -187,10 +187,10 @@ def main(
         envvar="SLACK_APP_TOKEN",
         help="Slack App Token (xapp-...)",
     ),
-    db: Optional[list[Path]] = typer.Option(
+    db: Optional[list[str]] = typer.Option(
         None,
         "--db",
-        help="Attach database file",
+        help="Attach database file (or name:path)",
     ),
     init_sql: Optional[Path] = typer.Option(
         None,
@@ -214,12 +214,17 @@ def main(
     # Parse databases
     databases = {}
     if db:
-        for path in db:
-            if not path.exists():
+        for entry in db:
+            # Support both "name:/path" and just "/path"
+            if ":" in entry and not entry.startswith("/"):
+                name, path = entry.split(":", 1)
+            else:
+                path = entry
+                name = Path(path).stem
+            if not Path(path).exists():
                 console.print(f"[red]Error:[/red] Database not found: {path}")
                 raise typer.Exit(1)
-            name = path.stem
-            databases[name] = str(path)
+            databases[name] = path
 
     # Load init SQL
     init_sql_content = None
