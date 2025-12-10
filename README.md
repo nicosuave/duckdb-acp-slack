@@ -2,6 +2,8 @@
 
 Slack bot that queries Claude Code via the [DuckDB ACP extension](https://github.com/sidequery/duckdb-acp).
 
+![screenshot](screenshot.png)
+
 ## Install
 
 ```bash
@@ -11,7 +13,7 @@ uvx duckdb-claude-slack
 Or from source:
 
 ```bash
-uvx --from git+https://github.com/nicosuave/duckdb-acp-slack duckdb-claude-slack
+uvx --from git+https://github.com/nicosuave/duckdb-claude-slack duckdb-claude-slack
 ```
 
 ## Setup
