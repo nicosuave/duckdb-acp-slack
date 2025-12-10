@@ -2,6 +2,8 @@
 
 Slack bot that queries Claude Code via the [DuckDB ACP extension](https://github.com/sidequery/duckdb-acp).
 
+The ACP extension wraps Claude Code, giving it access to a DuckDB instance (read-only: no write, update, or delete capabilities) with NO access to the local filesystem or bash shell. Ask questions in natural language, get SQL results back.
+
 ![screenshot](screenshot.png)
 
 ## Install
